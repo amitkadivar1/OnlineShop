@@ -83,7 +83,7 @@ def create_order(request):
     print("Type amount ",amount)
     print("Type amount ",type(amount))
     print("Order is -> ",order)
-    return render(request,'payment/created.html',{'order_id':order_id,'public_key':settings.RAZORPAY_PUBLIC_KEY,'amount':amount_inr})
+    return render(request,'payment/created.html',{'order_id':order_id,'public_key':settings.RAZORPAY_PUBLIC_KEY,'amount':amount_inr,'amountorig':amount})
     #order detail
     # payment_process view 
     # order_id=request.session.get('order_id')
