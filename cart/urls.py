@@ -1,6 +1,10 @@
 from django.urls import path
 from . import views
 
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.static import serve
+
 app_name='cart'
 
 urlpatterns = [
@@ -9,3 +13,4 @@ urlpatterns = [
     path('remove/<int:product_id>/',views.cart_remove,name='cart_remove'),
 
 ]
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
