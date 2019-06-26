@@ -34,3 +34,5 @@ urllib3==1.24.1
 vine==1.2.0
 whitenoise==4.1.2
 xmltodict==0.12.0
+dropbox 
+django-storages
