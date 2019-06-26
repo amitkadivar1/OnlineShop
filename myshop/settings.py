@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 """
 Django settings for myshop project.
 
@@ -174,4 +177,3 @@ DROPBOX_ROOT_PATH='onlinedigitalmarket'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
-    
