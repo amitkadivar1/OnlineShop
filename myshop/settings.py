@@ -143,8 +143,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #     os.path.join(BASE_DIR, 'static'),
 # )
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 CART_SESSION_ID = 'cart'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -165,3 +164,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 RAZORPAY_PUBLIC_KEY="rzp_live_wtxqdzl9vcaens"
 RAZORPAY_SECRET_KEY="2USdT93M3QulAToBQcunw6l2"
 # django_heroku.settings(locals())
+
+INSTALLED_APPS += ( 'storages', )
+
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+
+DROPBOX_OAUTH2_TOKEN='7B7r_nzU7aAAAAAAAAAAio_WVIYB04dbIgPRIb2xgpaLnaa2a8GA2X7UdzhxMaMa'
+DROPBOX_ROOT_PATH='onlinedigitalmarket'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
+    
