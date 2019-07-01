@@ -5,12 +5,19 @@ import json
 
 from django.shortcuts import render,redirect,get_object_or_404
 from django.urls import reverse
-from orders.models import Order,OrderItem
+from django.template.loader import render_to_string
 from django.conf import settings
 from django.shortcuts import render
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+from django.conf import settings
 from paypal.standard.forms import PayPalPaymentsForm
 from decouple import config
+from orders.models import Order,OrderItem
 from random import randint
+from io import BytesIO
+import weasyprint
+
 
 # Create your views here.
 # braintree.Configuration.configure(braintree.Environment.Sandbox,
@@ -105,13 +112,25 @@ def payment_process(request):
         payment_id=request.POST['razorpay_payment_id']
         order.braintree_id=payment_id
         order.save()
-        # print("Multiple value",payment_id)
+        # create invoice e-mail  
         payment_client_capture=(client.payment.capture(payment_id,amount))    
         payment_fetch=client.payment.fetch(payment_id)
         status=payment_fetch['status']
         amount_fetch=payment_fetch['amount']
         amount_fetch_inr=amount_fetch//100
-        print(payment_client_capture['email'])
+        subject = 'My Shop - Invoice no. {}'.format(order.id)
+        message = 'Please, find attached the invoice for your recent purchase.'
+        from_mail=settings.EMAIL_HOST_USER
+        email = EmailMessage(subject,message,'amit.kadivar3@gmail.com',[order.email])
+        # generate PDF
+        html = render_to_string('orders/order/pdf.html', {'order':order})
+        out=BytesIO()
+        stylesheets=[weasyprint.CSS(settings.STATIC_ROOT +'/css/pdf.css')]
+        weasyprint.HTML(string=html).write_pdf(out,stylesheets=stylesheets)
+        # attach PDF file
+        email.attach('order_{}.pdf'.format(order.id),out.getvalue(),'application/pdf')
+        # send e-mail
+        email.send()
         return render(request,'payment/done.html',{'amount':amount_fetch_inr,'status':status})   
     # else:
     #     return render(request, 'payment/done.html',{"amount":"Get Method"})
@@ -131,3 +150,4 @@ def response(request):
     res['signature']=request.GET.get('signature')
     res['signature_algorithm'] = request.GET.get('signature_algorithm')
     return render(request,'payment/done.html',{'res':res})
+

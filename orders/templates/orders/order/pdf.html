@@ -1,6 +1,6 @@
 <html>
 <body>
-    <h1>My Shop</h1>
+    <h1><a href="https://onlinedigitalmarket.herokuapp.com/">Online Digital Market</a></h1>
     <p>
         Invoice no. {{ order.id }}</br>
         <span class="secondary">
@@ -39,8 +39,10 @@
                     </tr>
                 </tbody>
             </table>
+            <small>Purchased From <b>https://onlinedigitalmarket.herokuapp.com</b> </small>            
             <span class="{% if order.paid %}paid{% else %}pending{% endif %}">
                 {% if order.paid %}Paid{% else %}Pending payment{% endif %}
             </span>
+
     </body>
 </html>
