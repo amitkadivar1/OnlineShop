@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,10 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'c$4wl-51x1ay_ucb652(ik@$zbh3q+l4km%r1m%0+)3z_ed(2_'
+SECRET_KEY = config('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False     
+
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
@@ -90,11 +93,11 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db23ir6arib1vc',
-        'USER': 'etfdhgsxzdcull',
-        'PASSWORD': 'aa615cb83e46daa727435d58c305e42e2f7b2dbf9b0e2db31d17ba00bb2e45be',
-        'HOST': 'ec2-174-129-226-232.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
@@ -152,27 +155,27 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # # Braintree settings
-# BRAINTREE_MERCHANT_ID = '85xmvv6tbx6hpdpf' # Merchant ID 
-# BRAINTREE_PUBLIC_KEY = 'yk3p3sbz7ffnvv9z' # Public Key 
-# BRAINTREE_PRIVATE_KEY = 'da732c740c42eb823ee327059b3548cb' # Private key 
+# BRAINTREE_MERCHANT_ID = config('BRAINTREE_MERCHANT_ID') # Merchant ID 
+# BRAINTREE_PUBLIC_KEY = config('BRAINTREE_PUBLIC_KEY') # Public Key 
+# BRAINTREE_PRIVATE_KEY = config('BRAINTREE_PRIVATE_KEY')  # Private key 
 
 # #paypal 
-# PAYPAL_RECEIVER_EMAIL = 'amit.kadivar1@gmail.com'
-# PAYPAL_TEST = True
+# PAYPAL_RECEIVER_EMAIL = config('PAYPAL_RECEIVER_EMAIL')
+# PAYPAL_TEST = config('PAYPAL_TEST')
 ############ test ##################### 
-# RAZORPAY_PUBLIC_KEY='rzp_test_SZvIoMSZjtSUgQ'
-# RAZORPAY_SECRET_KEY= '91XHPsYZRXfnscPZOz7RaquB'
+# RAZORPAY_PUBLIC_KEY=config('RAZORPAY_PUBLIC_KEY_TEST')
+# RAZORPAY_SECRET_KEY= config('RAZORPAY_SECRET_KEY_TEST')
 # ########## live #####################
-RAZORPAY_PUBLIC_KEY="rzp_live_wtxqdzl9vcaens"
-RAZORPAY_SECRET_KEY="2USdT93M3QulAToBQcunw6l2"
+RAZORPAY_PUBLIC_KEY=config('RAZORPAY_PUBLIC_KEY')
+RAZORPAY_SECRET_KEY=config('RAZORPAY_SECRET_KEY')
 # django_heroku.settings(locals())
 
 INSTALLED_APPS += ( 'storages', )
 
 DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 
-DROPBOX_OAUTH2_TOKEN='7B7r_nzU7aAAAAAAAAAAio_WVIYB04dbIgPRIb2xgpaLnaa2a8GA2X7UdzhxMaMa'
-DROPBOX_ROOT_PATH='onlinedigitalmarket'
+DROPBOX_OAUTH2_TOKEN=config('DROPBOX_OAUTH2_TOKEN')
+DROPBOX_ROOT_PATH=config('DROPBOX_ROOT_PATH')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
