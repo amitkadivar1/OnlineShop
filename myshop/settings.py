@@ -183,8 +183,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'amit.kadivar3@gmail.com'
-EMAIL_HOST_PASSWORD = 'Shreeji@Amit@Ce@1234'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
