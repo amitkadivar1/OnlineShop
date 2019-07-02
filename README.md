@@ -32,3 +32,9 @@ replace FileField to ImageField or any other field
 #urls.py 
 
 urlpatterns +=  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+#Send mail using Gmail
+use this [blog](https://medium.com/@_christopher/how-to-send-emails-with-python-django-through-google-smtp-server-for-free-22ea6ea0fb8e) for put settings
+
+follow [this](https://www.codingforentrepreneurs.com/blog/use-gmail-for-email-in-django/) link for send mail if you got error in live 
