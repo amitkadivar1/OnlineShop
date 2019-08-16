@@ -11,7 +11,7 @@ def product_list(request, category_slug=None):
     googlemapapikey=config('GOOGLEMAPAPIKEY')
     useripaddress=request.META.get('HTTP_X_FORWARDED_FOR', '')
     print(useripaddress)
-    response = requests.get('http://api.ipstack.com/{}/check?access_key={}'.format(useripaddress,ipstackapikey))
+    response = requests.get('http://api.ipstack.com/{}?access_key={}'.format(useripaddress,ipstackapikey))
     geodata=response.json()
     userip=geodata['ip']
     countryname=geodata['country_name'] 
