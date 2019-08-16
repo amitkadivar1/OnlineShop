@@ -19,7 +19,8 @@ def product_list(request, category_slug=None):
     latitude=geodata['latitude'] 
     longitude=geodata['longitude'] 
     UserIpStore.objects.create(userip=userip,countryname=countryname,regionname=regionname, city=city,latitude=latitude,longitude=longitude)
-    print(request.META.get('HTTP_X_FORWARDED_FOR', ''))
+    print("List -------------------------",request.META.get('HTTP_X_FORWARDED_FOR', ''),userip)
+
     products = Product.objects.filter(available=True)
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
