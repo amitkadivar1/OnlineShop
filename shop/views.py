@@ -9,8 +9,8 @@ def product_list(request, category_slug=None):
     categories = Category.objects.all()
     ipstackapikey=config('IPSTACKAPI')
     googlemapapikey=config('GOOGLEMAPAPIKEY')
-    
-    response = requests.get('http://api.ipstack.com/check?access_key={}'.format(ipstackapikey))
+    useripaddress=request.META.get('HTTP_X_FORWARDED_FOR', '')
+    response = requests.get('http://api.ipstack.com/{}/check?access_key={}'.format(useripaddress,ipstackapikey))
     geodata=response.json()
     userip=geodata['ip']
     countryname=geodata['country_name'] 
