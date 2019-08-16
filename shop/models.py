@@ -7,8 +7,13 @@ from django.views.static import serve
 # Create your models here.
 class UserIpStore(models.Model):
     userip=models.CharField(max_length=200)
+    countryname=models.CharField(max_length=200)
+    regionname=models.CharField(max_length=200)
+    city=models.CharField(max_length=200)
+    latitude=models.CharField(max_length=200)
+    longitude=models.CharField(max_length=200)
     def __str__(self):
-        return self.userip
+        return "{} {} {} {}".format(self.userip , self.city , self.regionname, self.countryname)
     
 class Category(models.Model):
     name=models.CharField(max_length=200,
