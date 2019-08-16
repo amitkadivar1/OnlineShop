@@ -39,4 +39,3 @@ django-storages
 django-environ
 python-decouple
 WeasyPrint
-requests
