@@ -10,6 +10,7 @@ def product_list(request, category_slug=None):
     ipstackapikey=config('IPSTACKAPI')
     googlemapapikey=config('GOOGLEMAPAPIKEY')
     useripaddress=request.META.get('HTTP_X_FORWARDED_FOR', '')
+    print(useripaddress)
     response = requests.get('http://api.ipstack.com/{}/check?access_key={}'.format(useripaddress,ipstackapikey))
     geodata=response.json()
     userip=geodata['ip']
@@ -17,7 +18,8 @@ def product_list(request, category_slug=None):
     regionname=geodata['region_name']
     city=geodata['city'] 
     latitude=geodata['latitude'] 
-    longitude=geodata['longitude'] 
+    longitude=geodata['longitude']
+    print(geodata) 
     UserIpStore.objects.create(userip=userip,countryname=countryname,regionname=regionname, city=city,latitude=latitude,longitude=longitude)
     print("List -------------------------",request.META.get('HTTP_X_FORWARDED_FOR', ''),userip)
 
