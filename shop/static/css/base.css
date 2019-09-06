@@ -6,6 +6,16 @@ body {
     font-family:helvetica, sans-serif; 
 }
 
+.copyright-main {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color:#5993bb;
+    color: white;
+    text-align: center;
+  }
+
 h1, h2, h3, h4, h5 , h6 { 
     font-family: 'Ubuntu', sans-serif; font-weight:normal;
 }
