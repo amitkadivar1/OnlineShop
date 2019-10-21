@@ -1,4 +1,4 @@
-demo like below mentiond site, 
+demo like this site, 
 
 amitkadivar.xyz
 
