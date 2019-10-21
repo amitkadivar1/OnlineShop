@@ -8,7 +8,7 @@ table {
     width:100%;
     border-spacing:0;
     border-collapse: collapse;
-    margin:20px 0;
+    margin:20px 0 20px 0;
 }
 
 table th, table td {
@@ -51,7 +51,7 @@ h1 {
     padding:14px 12px 0px;
     float:right;
     transform: rotate(-15deg);
-    margin-right:40px;
+    margin:0 40px 0 0;
 }
 
 .pending {
