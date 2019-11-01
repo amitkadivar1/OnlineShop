@@ -19,7 +19,7 @@ juspay==1.1.2
 juspayp3==1.0.1
 kombu==4.3.0
 paypal==1.2.5
-Pillow==5.4.1
+Pillow==6.2.0
 psycopg2==2.7.7
 pycparser==2.19
 PyJWT==1.7.1
